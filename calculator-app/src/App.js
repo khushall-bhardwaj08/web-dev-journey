@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { evaluate } from "mathjs";
 import "./App.css";
 
 function App() {
@@ -10,8 +11,14 @@ function App() {
 
   const calculate = () => {
     try {
-      setInput(Function('"use strict"; return (' + input + ')')().toString());
-    } catch {
+      let expression = input
+        .replace(/×/g, "*")
+        .replace(/÷/g, "/");
+
+      const result = evaluate(expression);
+
+      setInput(String(result));
+    } catch (err) {
       setInput("Error");
     }
   };
@@ -33,12 +40,12 @@ function App() {
           <button onClick={() => handleClick("7")}>7</button>
           <button onClick={() => handleClick("8")}>8</button>
           <button onClick={() => handleClick("9")}>9</button>
-          <button onClick={() => handleClick("/")}>÷</button>
+          <button onClick={() => handleClick("÷")}>÷</button>
 
           <button onClick={() => handleClick("4")}>4</button>
           <button onClick={() => handleClick("5")}>5</button>
           <button onClick={() => handleClick("6")}>6</button>
-          <button onClick={() => handleClick("*")}>×</button>
+          <button onClick={() => handleClick("×")}>×</button>
 
           <button onClick={() => handleClick("1")}>1</button>
           <button onClick={() => handleClick("2")}>2</button>
