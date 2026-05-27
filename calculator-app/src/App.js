@@ -10,7 +10,7 @@ function App() {
 
   const calculate = () => {
     try {
-      setInput(eval(input).toString());
+      setInput(Function('"use strict"; return (' + input + ')')().toString());
     } catch {
       setInput("Error");
     }
