@@ -23,6 +23,8 @@ flex-wrap:wrap;
 
 .logo{
 height:55px;
+max-width:100%;
+width:auto;
 }
 
 nav{
@@ -160,4 +162,13 @@ transition:0.4s;
 
 .card:hover img{
 transform:scale(1.05);
+}
+img{
+max-width:100%;
+height:auto;
+display:block;
+}
+
+body{
+overflow-x:hidden;
 }
